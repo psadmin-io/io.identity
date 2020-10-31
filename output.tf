@@ -13,3 +13,7 @@ output "user_api_key_fingerprint" {
 output "user_ocid" {
   value = oci_identity_user.cm_backup_user.id
 }
+
+output "group_name" {
+  value = var.group_name
+}

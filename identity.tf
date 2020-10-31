@@ -40,6 +40,6 @@ resource "oci_identity_group" "cm_backup_group" {
 
 resource "oci_identity_user_group_membership" "cm_backup_user_group_membership" {
     count     = var.create_group_and_assign_group==true ? 1 : 0
-    group_id = oci_identity_group.cm_backup_group.id
+    group_id = oci_identity_group.cm_backup_group[0].id
     user_id = oci_identity_user.cm_backup_user.id
 }
