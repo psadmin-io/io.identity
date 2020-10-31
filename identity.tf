@@ -32,12 +32,14 @@ resource "tls_private_key" "user_api_key" {
 }
 
 resource "oci_identity_group" "cm_backup_group" {
+    count     = var.create_group_and_assign_group==true ? 1 : 0
     compartment_id = var.tenancy_ocid
     description = var.group_description
     name = var.group_name
 }
 
 resource "oci_identity_user_group_membership" "cm_backup_user_group_membership" {
+    count     = var.create_group_and_assign_group==true ? 1 : 0
     group_id = oci_identity_group.cm_backup_group.id
     user_id = oci_identity_user.cm_backup_user.id
 }
